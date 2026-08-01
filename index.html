@@ -58,7 +58,11 @@
 
   let currentColorIndex = -1;
   let x = 100, y = 100;
-  let dx = 3.8, dy = 3.8;
+  
+  // Randomize initial direction (50% chance to invert each axis)
+  let dx = 3.8 * (Math.random() < 0.5 ? 1 : -1);
+  let dy = 3.8 * (Math.random() < 0.5 ? 1 : -1);
+  
   let maxX = 0, maxY = 0;
 
   function updateBounds() {
@@ -69,7 +73,6 @@
   updateBounds();
 
   function pickColor() {
-    // Pick randomly from all indices except the currently active one
     let nextIndex = Math.floor(Math.random() * (colors.length - 1));
     if (nextIndex >= currentColorIndex && currentColorIndex !== -1) {
       nextIndex++;
